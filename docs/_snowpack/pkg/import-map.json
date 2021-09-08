@@ -1,0 +1,6 @@
+{
+  "imports": {
+    "rxjs": "./rxjs.js",
+    "rxjs/operators": "./rxjs/operators.js"
+  }
+}

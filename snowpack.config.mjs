@@ -1,10 +1,11 @@
 export default {
   mount: {
-    docs: "/",
+    public: "/",
     src: "/dist",
   },
   devOptions: {
     tailwindConfig: "./tailwind.config.js",
   },
+  buildOptions: { out: "docs" },
   plugins: ["@snowpack/plugin-postcss"],
 };
