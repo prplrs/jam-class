@@ -1,5 +1,5 @@
 import { fromEvent, interval, merge } from "rxjs";
-import { debounceTime, throttleTime, buffer, tap } from "rxjs/operators";
+import { debounceTime, tap, mapTo, switchMap } from "rxjs/operators";
 
 const JAM = [
   "Just a Minute",
@@ -46,15 +46,11 @@ const transitionText = () => {
 JamOutput.innerText = getRandomJAM();
 
 // combine final observables
-
 merge(
   // handle/debounce the button click
-  fromEvent(JamBtn, "click").pipe(throttleTime(500)),
+  fromEvent(JamBtn, "click").pipe(debounceTime(500)),
   // rotate every 5s
   interval(5000)
-)
-  // .pipe(tap((x) => console.log("hiii")))
-  .pipe(buffer(throttleTime(100)))
-  .subscribe(() => {
-    transitionText();
-  });
+).subscribe(() => {
+  transitionText();
+});

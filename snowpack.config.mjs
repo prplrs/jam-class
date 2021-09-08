@@ -1,6 +1,6 @@
 export default {
   mount: {
-    public: "/",
+    docs: "/",
     src: "/dist",
   },
   devOptions: {
