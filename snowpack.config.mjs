@@ -6,6 +6,6 @@ export default {
   devOptions: {
     tailwindConfig: "./tailwind.config.js",
   },
-  buildOptions: { out: "docs" },
+  buildOptions: { out: "docs", baseUrl: "/jam-class" },
   plugins: ["@snowpack/plugin-postcss"],
 };
