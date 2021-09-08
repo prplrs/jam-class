@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .btn {
+    transition: all 0.2s ease-in-out;
+    @apply px-4 py-2 bg-blue-400 text-white rounded;
+  }
+  .btn:hover {
+    @apply bg-blue-600;
+  }
+
+  .wrapper {
+    @apply container mx-auto;
+  }
+}
+
+.will-transition {
+  opacity: 1;
+  transition: all 0.1s ease-in-out;
+}
+
+.transitioning {
+  opacity: 0;
+}

@@ -1,0 +1,21 @@
+{
+  "name": "jam-class",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Chris Sell",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "@snowpack/plugin-postcss": "^1.4.3",
+    "postcss": "^8.3.6",
+    "snowpack": "^3.8.8",
+    "tailwindcss": "^2.2.11"
+  },
+  "scripts": {
+    "start": "snowpack dev",
+    "build": "snowpack build"
+  },
+  "dependencies": {
+    "rxjs": "^7.3.0"
+  }
+}
