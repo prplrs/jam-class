@@ -1,5 +1,5 @@
 import { fromEvent, interval, merge } from "../vendor/pkg/rxjs.js";
-import { debounceTime } from "../vendor/pkg/rxjs/operators.js";
+import { throttleTime } from "../vendor/pkg/rxjs/operators.js";
 
 const JAM = [
   "Just a Minute",
@@ -48,7 +48,7 @@ JamOutput.innerText = getRandomJAM();
 // combine final observables
 merge(
   // handle/debounce the button click
-  fromEvent(JamBtn, "click").pipe(debounceTime(500)),
+  fromEvent(JamBtn, "click").pipe(throttleTime(500)),
   // rotate every 5s
   interval(5000)
 ).subscribe(() => {

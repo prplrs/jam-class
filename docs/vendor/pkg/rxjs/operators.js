@@ -1,44 +1,56 @@
-import { o as operate, O as OperatorSubscriber, m as asyncScheduler } from '../common/async-d7a82ea1.js';
+import { o as operate, c as innerFrom, a as OperatorSubscriber, t as timer, h as asyncScheduler } from '../common/timer-36a59fd3.js';
 
-function debounceTime(dueTime, scheduler) {
-    if (scheduler === void 0) { scheduler = asyncScheduler; }
+var defaultThrottleConfig = {
+    leading: true,
+    trailing: false,
+};
+function throttle(durationSelector, _a) {
+    var _b = _a === void 0 ? defaultThrottleConfig : _a, leading = _b.leading, trailing = _b.trailing;
     return operate(function (source, subscriber) {
-        var activeTask = null;
-        var lastValue = null;
-        var lastTime = null;
-        var emit = function () {
-            if (activeTask) {
-                activeTask.unsubscribe();
-                activeTask = null;
-                var value = lastValue;
-                lastValue = null;
-                subscriber.next(value);
+        var hasValue = false;
+        var sendValue = null;
+        var throttled = null;
+        var isComplete = false;
+        var endThrottling = function () {
+            throttled === null || throttled === void 0 ? void 0 : throttled.unsubscribe();
+            throttled = null;
+            if (trailing) {
+                send();
+                isComplete && subscriber.complete();
             }
         };
-        function emitWhenIdle() {
-            var targetTime = lastTime + dueTime;
-            var now = scheduler.now();
-            if (now < targetTime) {
-                activeTask = this.schedule(undefined, targetTime - now);
-                subscriber.add(activeTask);
-                return;
+        var cleanupThrottling = function () {
+            throttled = null;
+            isComplete && subscriber.complete();
+        };
+        var startThrottle = function (value) {
+            return (throttled = innerFrom(durationSelector(value)).subscribe(new OperatorSubscriber(subscriber, endThrottling, cleanupThrottling)));
+        };
+        var send = function () {
+            if (hasValue) {
+                hasValue = false;
+                var value = sendValue;
+                sendValue = null;
+                subscriber.next(value);
+                !isComplete && startThrottle(value);
             }
-            emit();
-        }
+        };
         source.subscribe(new OperatorSubscriber(subscriber, function (value) {
-            lastValue = value;
-            lastTime = scheduler.now();
-            if (!activeTask) {
-                activeTask = scheduler.schedule(emitWhenIdle, dueTime);
-                subscriber.add(activeTask);
-            }
+            hasValue = true;
+            sendValue = value;
+            !(throttled && !throttled.closed) && (leading ? send() : startThrottle(value));
         }, function () {
-            emit();
-            subscriber.complete();
-        }, undefined, function () {
-            lastValue = activeTask = null;
+            isComplete = true;
+            !(trailing && hasValue && throttled && !throttled.closed) && subscriber.complete();
         }));
     });
 }
 
-export { debounceTime };
+function throttleTime(duration, scheduler, config) {
+    if (scheduler === void 0) { scheduler = asyncScheduler; }
+    if (config === void 0) { config = defaultThrottleConfig; }
+    var duration$ = timer(duration, scheduler);
+    return throttle(function () { return duration$; }, config);
+}
+
+export { throttleTime };
