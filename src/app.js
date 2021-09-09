@@ -1,5 +1,5 @@
 import { fromEvent, interval, merge } from "rxjs";
-import { debounceTime, tap, mapTo, switchMap } from "rxjs/operators";
+import { debounceTime } from "rxjs/operators";
 
 const JAM = [
   "Just a Minute",

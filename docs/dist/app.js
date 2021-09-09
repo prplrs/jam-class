@@ -1,5 +1,5 @@
-import { fromEvent, interval, merge } from "../_snowpack/pkg/rxjs.js";
-import { debounceTime, tap, mapTo, switchMap } from "../_snowpack/pkg/rxjs/operators.js";
+import { fromEvent, interval, merge } from "../vendor/pkg/rxjs.js";
+import { debounceTime } from "../vendor/pkg/rxjs/operators.js";
 
 const JAM = [
   "Just a Minute",
