@@ -19,6 +19,10 @@ const JAM = [
   "Jokes Aside Madam",
   "Judging All Mankind",
   "Jersey Acoustic Music",
+  "Just Act More",
+  "Jersies Are Magnificent",
+  "Jelly and mayo",
+  "Just act matural",
 ];
 
 // get DOM elements
