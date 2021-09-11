@@ -21,9 +21,20 @@ const JAM = [
   "Jersey Acoustic Music",
   "Just Act More",
   "Jersies Are Magnificent",
-  "Jelly and mayo",
-  "Just act matural",
+  "Jelly and Mayo",
+  "Just Act Matural",
   "Jiggle Aaren's Mouse",
+  "Just Add MySQL",
+  "Jelly Acai Mash",
+  "Jean Ass Mask",
+  "Jimmy's Aged Macarons",
+  "Jaunt Always M'lady",
+  "Jorts Are 'Mazing",
+  "Jackal Acute Magic",
+  "Jeweled Alabaster Mask",
+  "Jarheads Accumulate Maduros",
+  "Jailbirds Abhor Macaws",
+  "Jargonize All Memes",
 ];
 
 // get DOM elements
