@@ -583,9 +583,9 @@ video {
 	--tw-text-opacity: 1;
 	color: rgba(30, 64, 175, var(--tw-text-opacity));
 }
-.mx-4 {
-	margin-left: 1rem;
-	margin-right: 1rem;
+.mx-1 {
+	margin-left: 0.25rem;
+	margin-right: 0.25rem;
 }
 .flex {
 	display: flex;

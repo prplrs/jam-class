@@ -23,6 +23,7 @@ const JAM = [
   "Jersies Are Magnificent",
   "Jelly and mayo",
   "Just act matural",
+  "Jiggle Aaren's Mouse",
 ];
 
 // get DOM elements
